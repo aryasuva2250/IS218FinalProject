@@ -1,10 +1,12 @@
 from flask import Flask, render_template, make_response, redirect, url_for
 
 
-app = Flask(
-    __name__,
-    template_folder="templates"
-)
+app = Flask(__name__)
+app.config.from_object('config.Config')
+# Using a production configuration
+app.config.from_object('config.ProdConfig')
+# Using a development configuration
+app.config.from_object('config.DevConfig')
 
 @app.route("/")
 def home():
