@@ -1,3 +1,4 @@
+'''
 from flask import Flask, render_template, make_response, redirect, url_for
 
 
@@ -28,3 +29,4 @@ def users():
 @app.route("/login")
 def login():
     return redirect(url_for('dashboard'))
+'''
