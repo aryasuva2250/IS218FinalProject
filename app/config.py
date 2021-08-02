@@ -1,4 +1,4 @@
-"""Flask configuration."""
+"""Flask configuration variables."""
 from os import environ, path
 from dotenv import load_dotenv
 
@@ -7,22 +7,19 @@ load_dotenv(path.join(basedir, '.env'))
 
 
 class Config:
-    """Base config."""
+    """Set Flask configuration from .env file."""
+
+    # General Config
     SECRET_KEY = environ.get('SECRET_KEY')
-    SESSION_COOKIE_NAME = environ.get('SESSION_COOKIE_NAME')
+    FLASK_APP = environ.get('FLASK_APP')
+    FLASK_ENV = environ.get('FLASK_ENV')
+
+    # Flask-Assets
+    LESS_BIN = environ.get('LESS_BIN')
+    ASSETS_DEBUG = True
+    LESS_RUN_IN_DEBUG = True
+
+    # Static Assets
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'
-
-
-class ProdConfig(Config):
-    FLASK_ENV = 'production'
-    DEBUG = False
-    TESTING = False
-    DATABASE_URI = environ.get('PROD_DATABASE_URI')
-
-
-class DevConfig(Config):
-    FLASK_ENV = 'development'
-    DEBUG = True
-    TESTING = True
-    DATABASE_URI = environ.get('DEV_DATABASE_URI')
+    COMPRESSOR_DEBUG = True
