@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, make_response, redirect, url_for
 
 
 app = Flask(
@@ -14,3 +14,15 @@ def home():
         title='Flask-Login Tutorial.',
         body="You are now logged in!"
     )
+@app.route("/api/v2/test_response")
+def users():
+    headers = {"Content-Type": "application/json"}
+    return make_response(
+        'Test worked!',
+        200,
+        headers=headers
+    )
+
+@app.route("/login")
+def login():
+    return redirect(url_for('dashboard'))
